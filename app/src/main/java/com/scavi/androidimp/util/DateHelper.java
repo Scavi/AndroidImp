@@ -47,4 +47,24 @@ public class DateHelper {
         return c.getTimeInMillis();
     }
 
+
+    /**
+     * Determines the start of the next month depending on the given milli seconds. Then
+     * calculates the remaining time
+     *
+     * @param timeInMillis the given timestamp
+     * @return the remaining time
+     */
+    public static long timeToNextMonth(final long timeInMillis) {
+        Calendar next = Calendar.getInstance();
+        next.setTimeInMillis(timeInMillis);
+        // next month
+        next.add(Calendar.MONTH, 1);
+        next.set(Calendar.DAY_OF_MONTH, 1);
+        next.set(Calendar.HOUR_OF_DAY, 0);
+        next.set(Calendar.MINUTE, 0);
+        next.set(Calendar.SECOND, 0);
+        next.set(Calendar.MILLISECOND, 0);
+        return next.getTimeInMillis() - timeInMillis;
+    }
 }
